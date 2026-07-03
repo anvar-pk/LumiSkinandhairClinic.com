@@ -11,7 +11,7 @@
             --primary-dark: #6B3410;
             --primary-light: #F5E6D8;
             --accent: #C17F59;
-            --cream: #F5EDE3;
+            --cream: #FAF6F1;
             --text: #3D2914;
             --text-light: #7A5C3C;
             --white: #ffffff;
@@ -27,11 +27,7 @@
             font-family: 'Inter', sans-serif;
             color: var(--text);
             line-height: 1.6;
-            background-color: #F5EDE3;
-            background-image: 
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            background-blend-mode: multiply;
-            background-size: 200px 200px;
+            background: var(--cream);
         }
 
         h1, h2, h3 {
@@ -43,7 +39,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(245, 237, 227, 0.98);
+            background: rgba(250, 246, 241, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
             box-shadow: 0 2px 20px rgba(139, 69, 19, 0.08);
@@ -93,30 +89,11 @@
         /* Hero Section */
         .hero {
             margin-top: 70px;
-            background: linear-gradient(135deg, rgba(245,230,216,0.95) 0%, rgba(245,237,227,0.95) 100%);
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--cream) 100%);
             padding: 5rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            background-size: 200px 200px;
-            opacity: 0.15;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .hero > * {
-            position: relative;
-            z-index: 1;
         }
 
         .hero::before {
@@ -205,33 +182,12 @@
         }
 
         .service-card {
-            background: linear-gradient(135deg, #ffffff 0%, #FDF9F4 100%);
+            background: var(--white);
             padding: 2.5rem;
             border-radius: 20px;
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid rgba(193,127,89,0.15);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            background-size: 150px 150px;
-            opacity: 0.04;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .service-card > * {
-            position: relative;
-            z-index: 1;
+            border: 1px solid #eee;
         }
 
         .service-card:hover {
@@ -300,29 +256,10 @@
 
         /* About Section */
         .about {
-            background: linear-gradient(135deg, #7A3A10 0%, #8B4513 50%, #6B3410 100%);
+            background: var(--primary);
             color: white;
             padding: 5rem 2rem;
             position: relative;
-        }
-
-        .about::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            background-size: 200px 200px;
-            opacity: 0.1;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .about > * {
-            position: relative;
-            z-index: 1;
         }
 
         .about::after {
@@ -461,28 +398,8 @@
 
         /* Testimonials */
         .testimonials {
-            background: linear-gradient(135deg, rgba(245,230,216,0.9) 0%, rgba(245,237,227,0.9) 100%);
+            background: var(--primary-light);
             padding: 5rem 2rem;
-            position: relative;
-        }
-
-        .testimonials::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            background-size: 200px 200px;
-            opacity: 0.12;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .testimonials > * {
-            position: relative;
-            z-index: 1;
         }
 
         .testimonials-container {
@@ -568,26 +485,10 @@
         }
 
         .contact-form {
-            background: linear-gradient(135deg, #ffffff 0%, #FDF9F4 100%);
-            padding: 0;
+            background: white;
+            padding: 2.5rem;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(139, 69, 19, 0.08);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .contact-form::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            background-size: 150px 150px;
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 0;
         }
 
         .form-group {
@@ -837,100 +738,42 @@
         </div>
     </section>
 
-    <!-- Medical Dermatology Section -->
+    <!-- Services Section -->
     <section class="services" id="services">
         <div class="section-title">
-            <h2>Medical Dermatology</h2>
+            <h2>Our Treatments</h2>
+            <p>Comprehensive care for your skin and hair concerns</p>
         </div>
         <div class="services-grid">
             <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>Skin Rejuvenation</h3>
+                <p>Chemical peels and laser treatments to restore youthful, glowing skin.</p>
+            </div>
+            <div class="service-card">
                 <div class="service-icon">🌿</div>
-                <h3>Acne & Acne Scars</h3>
+                <h3>Acne & Scar Treatment</h3>
+                <p>Customized acne management plans and advanced scar reduction therapies for clear skin.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">🩹</div>
-                <h3>Eczema</h3>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🔴</div>
-                <h3>Psoriasis</h3>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">💨</div>
-                <h3>Urticaria</h3>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🟣</div>
-                <h3>Lichen Planus</h3>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🍄</div>
-                <h3>Fungal Infections</h3>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">⚡</div>
-                <h3>Allergic & Irritant Contact Dermatitis</h3>
+                <div class="service-icon">💆‍♀️</div>
+                <h3>Anti-Aging Solutions</h3>
+                <p>Botox and skin boosters to reduce fine lines and restore hydration and volume.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">💇‍♀️</div>
-                <h3>Alopecia Areata</h3>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">⬛</div>
-                <h3>Keloid</h3>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🎨</div>
-                <h3>Hypo & Hyper Pigmentation Disorders</h3>
+                <h3>Hair Restoration</h3>
+                <p>PRP therapy, GFC (Growth Factor Concentrate), and medical treatments for hair loss and thinning.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">🔬</div>
-                <h3>Hair Disorders</h3>
+                <h3>Hair & Scalp Analysis</h3>
+                <p>Digital trichoscopy and personalized treatment plans for all hair and scalp conditions.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">➕</div>
-                <h3>And More</h3>
-            </div>
-        </div>
-    </section>
-
-    <!-- Cosmetic Dermatology Section -->
-    <section class="services" style="background: var(--white); padding: 5rem 2rem;">
-        <div class="services" style="max-width: 1200px; margin: 0 auto; padding: 0;">
-            <div class="section-title">
-                <h2>Cosmetic Dermatology</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">✨</div>
-                    <h3>Chemical Peel</h3>
-                    <p>Acne, melasma, uneven skin tone, tanning, dark circles</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">⚡</div>
-                    <h3>Q-Switch Nd:YAG Laser</h3>
-                    <p>Hyperpigmentation, melasma, freckles, tanning, tattoo removal, nevus of Ota</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💆‍♀️</div>
-                    <h3>Laser Hair Reduction</h3>
-                    <p>Triton diode laser — US FDA approved, all skin types</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💉</div>
-                    <h3>Botox & Skin Boosters</h3>
-                    <p>Fine lines, hydration, volume</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💇‍♀️</div>
-                    <h3>Hair Restoration</h3>
-                    <p>PRP, GFC</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔬</div>
-                    <h3>Hair & Scalp Analysis</h3>
-                    <p>Digital trichoscopy</p>
-                </div>
+                <div class="service-icon">🩺</div>
+                <h3>Medical Dermatology</h3>
+                <p>Diagnosis and treatment of eczema, psoriasis, vitiligo, and other skin disorders.</p>
             </div>
         </div>
     </section>
@@ -1052,7 +895,7 @@
                     <div class="icon">✉️</div>
                     <div>
                         <strong>Email</strong>
-                        <a href="mailto:contact@lumiskinandhairclinic.com" style="color: var(--text-light); text-decoration: none;">contact@lumiskinandhairclinic.com</a>
+                        <a href="mailto:lumiskinandhairclinic@gmail.com" style="color: var(--text-light); text-decoration: none;">lumiskinandhairclinic@gmail.com</a>
                     </div>
                 </div>
 
@@ -1104,7 +947,7 @@
                 <h4>Contact</h4>
                 <p>📍 First Floor, Block-C, LG Towers, Gunjur, Varthur</p>
                 <p>📞 +91-96066-94478</p>
-                <p>✉️ contact@lumiskinandhairclinic.com</p>
+                <p>✉️ lumiskinandhairclinic@gmail.com</p>
             </div>
             <div class="footer-section">
                 <h4>Follow Us</h4>
