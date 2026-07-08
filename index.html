@@ -59,9 +59,14 @@
         }
 
         .logo-img {
-            height: 55px;
+            height: 65px;
             width: auto;
             object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -130,12 +135,13 @@
         }
 
         .hero-logo {
-            max-width: 420px;
-            width: 90%;
+            max-width: 600px;
+            width: 95%;
             height: auto;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 10px 30px rgba(139, 69, 19, 0.15));
-            border-radius: 12px;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 15px 40px rgba(139, 69, 19, 0.2));
+            border-radius: 16px;
+            animation: logo-glow 3s ease-in-out infinite, logo-float 4s ease-in-out infinite;
         }
 
         .hero p {
@@ -649,7 +655,11 @@
             width: 100%;
             height: auto;
             margin-bottom: 1rem;
-            border-radius: 8px;
+            border-radius: 12px;
+            background: white;
+            padding: 12px;
+            border: 2px solid var(--accent);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .footer-bottom {
@@ -708,7 +718,8 @@
             }
 
             .hero-logo {
-                max-width: 300px;
+                max-width: 400px;
+                width: 95%;
             }
 
             .about-container,
@@ -722,7 +733,7 @@
             }
 
             .logo-img {
-                height: 45px;
+                height: 55px;
             }
 
             .about-logo-image {
