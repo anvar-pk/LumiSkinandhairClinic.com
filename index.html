@@ -1107,7 +1107,22 @@
         }
 
         /* Subtle hover glow */
-        .hero-logo-wrap:hover </style>
+        .hero-logo-wrap:hover
+
+
+        .google-reviews-section { padding: 70px 20px; background: var(--background-light, #faf7f4); text-align: center; }
+        .google-reviews-list { max-width: 1200px; margin: 28px auto 24px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; text-align: left; }
+        .google-review-item { border: 1px solid #eee5df; border-radius: 16px; padding: 22px; background: #fff; box-shadow: 0 8px 24px rgba(60,40,25,.05); min-width: 0; }
+        .google-review-item .review-author { font-weight: 700; font-size: 1.05rem; margin-bottom: 3px; }
+        .google-review-item .review-date { color: #777; font-size: .82rem; }
+        .google-review-item .review-text { white-space: pre-line; overflow-wrap: anywhere; margin: 12px 0; line-height: 1.65; }
+        .google-review-item a { color: inherit; text-decoration: underline; font-size: .9rem; }
+        .google-review-stars { color: #f4b400; font-size: 1.25rem; letter-spacing: 2px; margin: 8px 0; }
+        .google-reviews-link { display: inline-block; margin-top: 12px; padding: 13px 25px; border-radius: 999px; background: var(--primary, #76513f); color: #fff; text-decoration: none; font-weight: 600; }
+        .google-reviews-note { color: #777; font-size: .88rem; margin: 16px auto 0 !important; max-width: 760px; }
+        @media (max-width: 900px) { .google-reviews-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 600px) { .google-reviews-list { grid-template-columns: 1fr; } .google-review-item { padding: 18px; } }
+</style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -1307,7 +1322,40 @@
 </div>
 </div>
 </section>
-<!-- Testimonials -->
+<!-- Google Reviews: genuine review text supplied by the clinic from Google review screenshots. Add future reviews to the reviews array in the script below. -->
+<section class="google-reviews-section" id="google-reviews" aria-labelledby="google-reviews-title">
+  <div class="section-title">
+    <h2 id="google-reviews-title">What Our Patients Say</h2>
+    <p>Selected five-star reviews shared on Google.</p>
+  </div>
+  <div class="google-reviews-list" id="google-reviews-list" aria-live="polite"></div>
+  <a class="google-reviews-link" href="https://maps.app.goo.gl/uqhnc1CiYdZArfZN8" target="_blank" rel="noopener noreferrer">Read More Reviews on Google ↗</a>
+  <p class="google-reviews-note">Reviews are displayed from screenshots supplied by the clinic. Individual experiences vary; treatment outcomes are not guaranteed.</p>
+</section>
+<script>
+(function () {
+  // To add reviews later, append another object to this array. Keep the wording faithful to the original Google review.
+  const reviews = [{"name": "Dr. Ashok K.", "date": "a month ago", "text": "I had a very good experience at Dr. Shifa's Lumi Hair & Skin Clinic. The doctor was professional, patient, and took the time to understand my concerns before explaining the treatment options. The consultation was detailed, and I appreciated the clear guidance without unnecessary procedures.\n\nThe staff were also friendly and supportive, and the clinic was clean and well maintained. Overall, I am satisfied with the experience and would recommend Dr. Shifa's Hair & Skin Clinic to anyone looking for professional care for hair and skin concerns."}, {"name": "Taruna Basnal", "date": "2 weeks ago", "text": "Excellent experience with the doctor! Very professional, knowledgeable, and friendly. The doctor listens patiently, understands concerns, and explains the treatment clearly. The approach is gentle, and the results have been really satisfying. Highly recommended for anyone looking for a caring, trustworthy, and experienced dermatologist. Truly one of the best skin doctors!"}, {"name": "Farzana PM", "date": "3 weeks ago", "text": "I had a really good experience at Dr. Shifa's Lumi Skin and Hair Clinic. The doctor was very friendly and explained the treatment clearly. I felt very comfortable throughout the consultation and treatment. The Clinic was very spacious and clean too. Will highly recommend."}, {"name": "Hana Ismail", "date": "3 weeks ago", "text": "I had a wonderful experience at this clinic while seeking treatment for a stubborn burn mark. After a thorough consultation, the doctor recommended the Q-Switched & yag laser treatment, and the results have been incredible. Over a few sessions, my burn mark has significantly faded. Dr. Shifa took the time to explain the entire procedure and adjusted the laser settings to ensure my comfort throughout the process. I highly recommend this clinic to anyone looking for advanced and compassionate skin care!"}, {"name": "Shajila Pk", "date": "a month ago", "text": "Had a wonderful experience at Lumi Skin and Hair Clinic. Dr. Shifa is very professional, friendly, and takes the time to understand the concern before recommending the treatment. The clinic is clean, modern, and well maintained, and the staff are very courteous.\n\nI highly recommend Lumi for skin, hair, and cosmetic treatments in Varthur/Gunjur, Bangalore. The consultation was detailed and reassuring, and I was very happy with the overall experience. Definitely a great dermatology clinic to consider!"}, {"name": "Abdul Rias", "date": "a month ago", "text": "Excellent service and a very professional approach. Highly recommended for anyone looking for quality skincare."}, {"name": "Shafeek TA", "date": "a month ago", "text": "Good doctor. New clinic. Highly recommended!"}, {"name": "Nizal Fahir", "date": "a month ago", "text": "Very spacious and comfortable area. Amazing skin and hair work done by the doctor."}];
+  const container = document.getElementById('google-reviews-list');
+  if (!container || reviews.length === 0) return;
+  // Shuffle on each page load and render exactly three distinct reviews.
+  const shuffled = reviews.slice();
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  const selected = shuffled.slice(0, Math.min(3, shuffled.length));
+  const escapeHTML = value => String(value).replace(/[&<>\"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[ch]));
+  container.innerHTML = selected.map(review => `
+    <article class="google-review-item">
+      <div class="review-author">${escapeHTML(review.name)}</div>
+      <div class="review-date">Google review · ${escapeHTML(review.date)}</div>
+      <div class="google-review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+      <p class="review-text">${escapeHTML(review.text)}</p>
+      <a href="https://maps.app.goo.gl/uqhnc1CiYdZArfZN8" target="_blank" rel="noopener noreferrer">View on Google</a>
+    </article>`).join('');
+})();
+</script>
 <!-- Contact Section -->
 <section class="contact" id="contact">
 <div class="section-title">
@@ -1451,5 +1499,7 @@
   loadCloudGallery();
 })();
 </script>
+
+
 </body>
 </html>
