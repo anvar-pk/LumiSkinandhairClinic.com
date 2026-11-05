@@ -1555,14 +1555,14 @@
     el.style.left=(12+Math.random()*76)+'%'; el.style.top=(18+Math.random()*48)+'%';
     layer.appendChild(el); setTimeout(()=>el.remove(),1600);
   }
-  for(let i=0;i<14;i++) setTimeout(sparkle,i*170);
-  setInterval(sparkle,420);
-  setInterval(firework,2600);
+  for(let i=0;i<4;i++) setTimeout(sparkle,i*420);
+  setInterval(sparkle,3200);
+  setInterval(firework,18000);
 })();
 </script>
 
 
-<!-- LUMI BIG DEEPAVALI FIREWORKS -->
+<!-- LUMI BIG DEEPAVALI FIREWORKS: large bursts only on visitor interaction -->
 <style>
 #lumi-big-fireworks{position:fixed;inset:0;width:100%;height:100%;z-index:1101;pointer-events:none;mix-blend-mode:screen;opacity:.98}
 .lumi-big-fireworks-label{position:fixed;z-index:1102;left:50%;top:130px;transform:translateX(-50%);pointer-events:none;text-align:center;white-space:nowrap;color:#fff3bd;font-weight:800;font-size:clamp(18px,3vw,34px);letter-spacing:1px;text-shadow:0 0 5px #ff8a00,0 0 15px #ff3b00,0 0 30px #ffb000;animation:lumi-title-pulse 1.8s ease-in-out infinite alternate}
@@ -1577,25 +1577,39 @@
  const canvas=document.getElementById('lumi-big-fireworks');
  if(!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
  const ctx=canvas.getContext('2d'); if(!ctx) return;
- let w=0,h=0,particles=[],rockets=[],last=0,burstCount=0;
+ let w=0,h=0,particles=[],rockets=[],lastIdle=0;
  const colors=['#ff3030','#ff9f1c','#ffe84a','#35e7ff','#ff4fc8','#9b70ff','#5cff9d','#ffffff'];
  function resize(){const d=Math.min(devicePixelRatio||1,1.7);w=innerWidth;h=innerHeight;canvas.width=Math.floor(w*d);canvas.height=Math.floor(h*d);ctx.setTransform(d,0,0,d,0,0)}
  addEventListener('resize',resize,{passive:true});resize();
- function launch(){rockets.push({x:w*(.12+Math.random()*.76),y:h+8,tx:w*(.08+Math.random()*.84),ty:h*(.12+Math.random()*.48),speed:7+Math.random()*4,color:colors[Math.floor(Math.random()*colors.length)]})}
- function explode(x,y,color,big=true){const n=big?95:48,base=Math.random()*Math.PI*2;for(let i=0;i<n;i++){const a=base+i*Math.PI*2/n+(Math.random()-.5)*.12,sp=(big?2.1:1.4)+Math.random()*(big?5.2:3.3);particles.push({x,y,px:x,py:y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:65+Math.random()*45,max:110,size:1.5+Math.random()*2.7,color:Math.random()<.22?colors[Math.floor(Math.random()*colors.length)]:color,gravity:.045+Math.random()*.035})}}
- function frame(t){requestAnimationFrame(frame);ctx.clearRect(0,0,w,h);
-   if(t-last>620){launch();last=t; if(++burstCount%3===0) setTimeout(launch,180)}
-   rockets=rockets.filter(r=>r.y>r.ty);
-   for(const r of rockets){r.y-=r.speed;r.x+=(r.tx-r.x)*.012;ctx.beginPath();ctx.moveTo(r.x,r.y+20);ctx.lineTo(r.x,r.y);ctx.strokeStyle=r.color;ctx.lineWidth=3;ctx.shadowBlur=18;ctx.shadowColor=r.color;ctx.stroke();if(r.y<=r.ty+5){explode(r.x,r.y,r.color,true);r.y=-1}}
-   rockets=rockets.filter(r=>r.y>=0);
-   particles=particles.filter(p=>p.life>0);
-   for(const p of particles){p.px=p.x;p.py=p.y;p.x+=p.vx;p.y+=p.vy;p.vx*=.986;p.vy=p.vy*.986+p.gravity;p.life--;ctx.globalAlpha=Math.min(1,p.life/28);ctx.strokeStyle=p.color;ctx.lineWidth=p.size;ctx.shadowBlur=14;ctx.shadowColor=p.color;ctx.beginPath();ctx.moveTo(p.px,p.py);ctx.lineTo(p.x,p.y);ctx.stroke();if(p.life%7===0){ctx.fillStyle='#fff';ctx.fillRect(p.x,p.y,2,2)}}
+ function launch(targetX,targetY,big=true){
+   const color=colors[Math.floor(Math.random()*colors.length)];
+   rockets.push({x:targetX+(Math.random()-.5)*w*.18,y:h+8,tx:targetX,ty:targetY,speed:big?8+Math.random()*4:5+Math.random()*2,color,big});
+ }
+ function explode(x,y,color,big=true){
+   const n=big?125:22,base=Math.random()*Math.PI*2;
+   for(let i=0;i<n;i++){const a=base+i*Math.PI*2/n+(Math.random()-.5)*.12,sp=(big?2.1:0.8)+Math.random()*(big?5.8:1.8);particles.push({x,y,px:x,py:y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:(big?70:28)+Math.random()*(big?45:18),size:big?1.5+Math.random()*2.7:1+Math.random(),color:Math.random()<.22?colors[Math.floor(Math.random()*colors.length)]:color,gravity:.035+Math.random()*.035})}
+ }
+ function frame(t){
+   requestAnimationFrame(frame);ctx.clearRect(0,0,w,h);
+   // Only a tiny, occasional background sparkle when nobody interacts.
+   if(t-lastIdle>16000){lastIdle=t;explode(w*(.2+Math.random()*.6),h*(.18+Math.random()*.25),colors[Math.floor(Math.random()*colors.length)],false)}
+   const active=[];
+   for(const r of rockets){r.y-=r.speed;r.x+=(r.tx-r.x)*.018;ctx.beginPath();ctx.moveTo(r.x,r.y+22);ctx.lineTo(r.x,r.y);ctx.strokeStyle=r.color;ctx.lineWidth=r.big?3:1.5;ctx.shadowBlur=r.big?18:7;ctx.shadowColor=r.color;ctx.stroke();if(r.y<=r.ty+5)explode(r.x,r.y,r.color,r.big);else active.push(r)}
+   rockets=active;particles=particles.filter(p=>p.life>0);
+   for(const p of particles){p.px=p.x;p.py=p.y;p.x+=p.vx;p.y+=p.vy;p.vx*=.986;p.vy=p.vy*.986+p.gravity;p.life--;ctx.globalAlpha=Math.min(1,p.life/(p.size>1.4?28:12));ctx.strokeStyle=p.color;ctx.lineWidth=p.size;ctx.shadowBlur=p.size>1.4?14:5;ctx.shadowColor=p.color;ctx.beginPath();ctx.moveTo(p.px,p.py);ctx.lineTo(p.x,p.y);ctx.stroke();if(p.life%7===0){ctx.fillStyle='#fff';ctx.fillRect(p.x,p.y,2,2)}}
    ctx.globalAlpha=1;ctx.shadowBlur=0;
  }
- // Immediate large bursts on arrival, then a continuous but staggered display.
  requestAnimationFrame(frame);
- setTimeout(()=>{explode(w*.22,h*.28,'#ffcf33',true);explode(w*.78,h*.3,'#35e7ff',true)},350);
- setTimeout(()=>explode(w*.5,h*.2,'#ff4fc8',true),900);
+ // Large, colourful multi-rocket display only when the visitor clicks/taps.
+ document.addEventListener('pointerdown',event=>{
+   if(event.isPrimary===false) return;
+   const x=Math.max(35,Math.min(w-35,event.clientX||w/2));
+   const y=Math.max(65,Math.min(h*.62,event.clientY||h*.3));
+   launch(x,y,true);
+   setTimeout(()=>launch(Math.max(35,Math.min(w-35,x-w*.18)),Math.max(65,y-h*.12),true),120);
+   setTimeout(()=>launch(Math.max(35,Math.min(w-35,x+w*.18)),Math.max(65,y-h*.08),true),240);
+   setTimeout(()=>explode(x,y,colors[Math.floor(Math.random()*colors.length)],true),420);
+ },{passive:true});
 })();
 </script>
 
