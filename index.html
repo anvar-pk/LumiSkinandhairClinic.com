@@ -89,6 +89,56 @@
             color: var(--primary);
         }
 
+        .nav-links .registration-link {
+            display: inline-block;
+            padding: 0.65rem 1rem;
+            color: var(--white);
+            background: var(--primary);
+            border: 1px solid var(--primary);
+            border-radius: 999px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0;
+            white-space: nowrap;
+        }
+
+        .nav-links .registration-link:hover {
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .nav-links .nav-cta-group {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .nav-links .book-appointment-link {
+            display: inline-block;
+            padding: 0.65rem 1rem;
+            color: var(--primary);
+            background: transparent;
+            border: 1px solid var(--primary);
+            border-radius: 999px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0;
+            white-space: nowrap;
+        }
+
+        .nav-links .book-appointment-link:hover {
+            color: var(--white);
+            background: var(--primary);
+        }
+
+        .nav-links .book-appointment-link::after {
+            display: none;
+        }
+
+        .nav-links .registration-link::after {
+            display: none;
+        }
+
         .mobile-menu {
             display: none;
             font-size: 1.5rem;
@@ -710,6 +760,30 @@
                 border-bottom: none;
             }
 
+            .nav-links .registration-link {
+                margin-top: 0.75rem;
+                padding: 0.85rem 1rem;
+                text-align: center;
+                border-bottom: none;
+            }
+
+            .nav-links .nav-cta-group {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5rem;
+            }
+
+            .nav-links .book-appointment-link {
+                margin-top: 0.75rem;
+                padding: 0.85rem 1rem;
+                text-align: center;
+                border-bottom: none;
+            }
+
+            .nav-links .nav-cta-group .registration-link {
+                margin-top: 0;
+            }
+
             .mobile-menu {
                 display: block;
                 cursor: pointer;
@@ -1140,6 +1214,10 @@
 <li><a href="#about">About</a></li>
 <li><a href="#contact">Contact</a></li>
 <li><a href="/dermatologist-in-gunjur/">Dermatologist in Gunjur</a></li>
+<li class="nav-cta-group">
+<a class="book-appointment-link" href="#booking-form">Book Appointment</a>
+<a class="registration-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeI6wVvIYJHx1RwlweUcGFbBtvgSUNsh-oCYh-r3GkTsKUtAA/viewform">New Patient Registration</a>
+</li>
 </ul>
 <div class="mobile-menu">☰</div>
 </div>
@@ -1150,7 +1228,6 @@
 
 <p>Advanced dermatology and trichology treatments in Bangalore. Experience personalized care with cutting-edge technology for radiant skin and healthy hair.</p>
 <div>
-<a class="btn" href="#booking-form">Book Appointment</a>
 <a class="btn btn-outline" href="#services">Our Services</a>
 </div>
 </section>
