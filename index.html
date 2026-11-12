@@ -89,53 +89,45 @@
             color: var(--primary);
         }
 
-        .nav-container > .nav-cta-group .registration-link {
-            display: inline-block;
-            padding: 0.65rem 1rem;
-            color: var(--white);
-            background: var(--primary);
-            border: 1px solid var(--primary);
-            border-radius: 999px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            letter-spacing: 0;
-            white-space: nowrap;
-        }
-
-        .nav-container > .nav-cta-group .registration-link:hover {
-            color: var(--primary);
-            background: transparent;
-        }
-
-        .nav-container > .nav-cta-group {
+        .nav-cta-group {
             display: flex;
             align-items: center;
             gap: 0.65rem;
         }
 
-        .nav-container > .nav-cta-group .book-appointment-link {
+        .nav-cta-group a {
             display: inline-block;
             padding: 0.65rem 1rem;
-            color: var(--primary);
-            background: transparent;
             border: 1px solid var(--primary);
             border-radius: 999px;
             font-size: 0.88rem;
             font-weight: 600;
             letter-spacing: 0;
             white-space: nowrap;
+            text-decoration: none;
         }
 
-        .nav-container > .nav-cta-group .book-appointment-link:hover {
+        .nav-cta-group .book-appointment-link {
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .nav-cta-group .book-appointment-link:hover {
             color: var(--white);
             background: var(--primary);
         }
 
-        .nav-container > .nav-cta-group .book-appointment-link::after {
-            display: none;
+        .nav-cta-group .registration-link {
+            color: var(--white);
+            background: var(--primary);
         }
 
-        .nav-container > .nav-cta-group .registration-link::after {
+        .nav-cta-group .registration-link:hover {
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .nav-cta-group a::after {
             display: none;
         }
 
@@ -742,14 +734,14 @@
                 max-width: 36vw;
             }
 
-            .nav-container > .nav-cta-group {
+            .nav-cta-group {
                 order: 3;
                 flex: 0 0 100%;
                 justify-content: center;
                 gap: 0.5rem;
             }
 
-            .nav-container > .nav-cta-group a {
+            .nav-cta-group a {
                 padding: 0.55rem 0.75rem;
                 font-size: 0.75rem;
             }
@@ -1219,11 +1211,10 @@
 <li><a href="#about">About</a></li>
 <li><a href="#contact">Contact</a></li>
 <li><a href="/dermatologist-in-gunjur/">Dermatologist in Gunjur</a></li>
-
 </ul>
 <div class="nav-cta-group">
 <a class="book-appointment-link" href="#booking-form">Book Appointment</a>
-<a class="registration-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeI6wVvIYJHx1RwlweUcGFbBtvgSUNsh-oCYh-r3GkTsKUtAA/viewform">Patient Registration</a>
+<a class="registration-link" href="patient-registration.html">Patient Registration</a>
 </div>
 <div class="mobile-menu">☰</div>
 </div>
