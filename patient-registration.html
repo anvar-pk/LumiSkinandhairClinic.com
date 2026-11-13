@@ -45,6 +45,8 @@ input::placeholder{color:#a18d7c}
 .error-message{display:none;background:#fff2ed;color:#8c2f1c;border-radius:10px;padding:12px;margin:14px 0 0;font-size:13px}
 footer{text-align:center;color:var(--muted);padding:20px;border-top:1px solid rgba(139,69,19,.12);font-size:13px}
 .hidden-frame{position:absolute;width:1px;height:1px;left:-9999px;top:-9999px;border:0}
+.success-actions{display:flex;flex-direction:column;align-items:center;gap:12px}
+.success-actions .home-button{font:600 14px Inter,sans-serif;cursor:pointer;min-width:230px}
 @media(max-width:520px){.header-inner{padding:10px 13px}.brand-logo{height:48px}.back-link{font-size:12px;padding:9px 11px}main{padding:27px 13px 38px}.form-card{border-radius:16px}}
 </style>
 </head>
@@ -107,7 +109,10 @@ footer{text-align:center;color:var(--muted);padding:20px;border-top:1px solid rg
       </div>
       <h2>Registration Successful!</h2>
       <p>Thank you for registering with Dr. Shifa's Lumi Skin &amp; Hair Clinic. We look forward to welcoming you.</p>
-      <a class="home-button" href="index.html">Back to LUMI Homepage</a>
+      <div class="success-actions">
+        <button class="home-button" id="nextPatientButton" type="button">Next Patient Registration</button>
+        <a class="home-button" href="index.html">Back to Home</a>
+      </div>
     </section>
   </section>
 </main>
@@ -121,8 +126,22 @@ footer{text-align:center;color:var(--muted);padding:20px;border-top:1px solid rg
   const error=document.getElementById('errorMessage');
   const success=document.getElementById('successScreen');
   const patientName=document.getElementById('patientName');
+  const nextPatientButton=document.getElementById('nextPatientButton');
+  const formLogo=document.querySelector('.form-logo');
   let submitted=false;
   let timeoutId;
+  nextPatientButton.addEventListener('click',function(){
+    form.reset();
+    submitted=false;
+    clearTimeout(timeoutId);
+    error.style.display='none';
+    success.style.display='none';
+    form.style.display='block';
+    formLogo.style.display='block';
+    button.disabled=false;
+    button.textContent='Submit Registration';
+    document.querySelector('.intro').scrollIntoView({behavior:'smooth',block:'start'});
+  });
   frame.addEventListener('load',function(){
     if(!submitted)return;
     clearTimeout(timeoutId);
