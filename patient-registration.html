@@ -32,6 +32,7 @@ label{display:block;font-size:14px;font-weight:600;margin-bottom:7px}
 input,select{width:100%;min-height:49px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:400 15px Inter,sans-serif;color:var(--text);background:#fff}
 input:focus,select:focus{outline:3px solid rgba(193,127,89,.2);border-color:var(--accent)}
 input::placeholder{color:#a18d7c}
+.patient-name{text-transform:uppercase}
 .hint{font-size:12px;color:var(--muted);margin:6px 0 0}
 .submit-button{width:100%;border:0;border-radius:999px;background:var(--primary);color:#fff;padding:15px 20px;font:600 16px Inter,sans-serif;cursor:pointer;margin-top:8px}
 .submit-button:hover{background:#71370f}
@@ -64,7 +65,7 @@ footer{text-align:center;color:var(--muted);padding:20px;border-top:1px solid rg
     <form id="registrationForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeI6wVvIYJHx1RwlweUcGFbBtvgSUNsh-oCYh-r3GkTsKUtAA/formResponse" method="POST" target="googleFormResponse">
       <div class="field">
         <label for="patientName">Patient Name <span class="required">*</span></label>
-        <input id="patientName" name="entry.934511457" type="text" placeholder="Enter patient's full name" autocomplete="name" maxlength="120" required>
+        <input id="patientName" class="patient-name" name="entry.934511457" type="text" placeholder="Enter patient's full name" autocomplete="name" maxlength="120" required>
       </div>
       <div class="field">
         <label for="age">Age <span class="required">*</span></label>
@@ -119,6 +120,7 @@ footer{text-align:center;color:var(--muted);padding:20px;border-top:1px solid rg
   const button=document.getElementById('submitButton');
   const error=document.getElementById('errorMessage');
   const success=document.getElementById('successScreen');
+  const patientName=document.getElementById('patientName');
   let submitted=false;
   let timeoutId;
   frame.addEventListener('load',function(){
@@ -130,6 +132,7 @@ footer{text-align:center;color:var(--muted);padding:20px;border-top:1px solid rg
     document.querySelector('.intro').scrollIntoView({behavior:'smooth',block:'start'});
   });
   form.addEventListener('submit',function(){
+    patientName.value=patientName.value.toUpperCase();
     submitted=true;
     error.style.display='none';
     button.disabled=true;

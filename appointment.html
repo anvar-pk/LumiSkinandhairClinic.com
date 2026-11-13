@@ -28,6 +28,7 @@ h1{font:600 clamp(2rem,5vw,2.65rem)/1.2 'Playfair Display',serif;color:var(--pri
 label{display:block;font-size:14px;font-weight:600;margin-bottom:7px}.required{color:#a13b2b}.optional{font-size:12px;color:var(--muted);font-weight:400}
 input,select,textarea{appearance:none;width:100%;min-height:49px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:400 15px Inter,sans-serif;color:var(--text);background:#fff}
 textarea{min-height:110px;resize:vertical}input:focus,select:focus,textarea:focus{outline:3px solid rgba(193,127,89,.2);border-color:var(--accent)}input::placeholder,textarea::placeholder{color:#a18d7c}
+.patient-name{text-transform:uppercase}
 .hint{font-size:12px;color:var(--muted);margin:6px 0 0}
 .confirm-note{font-size:13px;color:var(--muted);line-height:1.6;margin:4px 0 18px}.confirm-note a{color:var(--primary);font-weight:700;text-decoration:none}
 .submit-button{width:100%;border:0;border-radius:999px;background:var(--accent);color:#fff;padding:15px 20px;font:600 16px Inter,sans-serif;cursor:pointer;margin-top:4px}.submit-button:hover{background:#874535}.submit-button:disabled{opacity:.65;cursor:wait}
@@ -45,7 +46,7 @@ footer{text-align:center;color:var(--muted);padding:20px;border-top:1px solid rg
     <img class="form-logo" src="lumi-logo.png" alt="Lumi Skin &amp; Hair Clinic">
     <form id="appointmentForm" autocomplete="off" action="https://docs.google.com/forms/d/e/1FAIpQLSdMHHNDVpSyHNO7B7mdy4hbFrjHXt9GUVw0diow4E7hsQc3qw/formResponse" method="POST" target="googleAppointmentResponse">
       <div class="form-grid">
-        <div class="field"><label for="fullName">Full Name <span class="required">*</span></label><input id="fullName" name="entry.2125411877" type="text" placeholder="Your full name" maxlength="120" required></div>
+        <div class="field"><label for="fullName">Full Name <span class="required">*</span></label><input id="fullName" class="patient-name" name="entry.2125411877" type="text" placeholder="Your full name" maxlength="120" required></div>
         <div class="field"><label for="mobile">Mobile Number <span class="required">*</span></label><input id="mobile" name="entry.799839231" type="tel" inputmode="tel" placeholder="e.g. 9606694478" required></div>
         <div class="field"><label for="age">Age <span class="required">*</span></label><input id="age" name="entry.1205623720" type="number" min="1" max="120" step="1" placeholder="Your age" required></div>
         <div class="field"><label for="email">Email <span class="optional">(optional)</span></label><input id="email" name="entry.1338469328" type="email" placeholder="you@example.com"></div>
@@ -75,10 +76,11 @@ footer{text-align:center;color:var(--muted);padding:20px;border-top:1px solid rg
 (function(){
   const form=document.getElementById('appointmentForm'), frame=document.getElementById('googleAppointmentResponse'), button=document.getElementById('submitButton'), error=document.getElementById('errorMessage'), success=document.getElementById('successScreen'), date=document.getElementById('appointmentDate'), sex=document.getElementById('sex'), sexOther=document.getElementById('sexOtherResponse');
   const now=new Date(); date.min=[now.getFullYear(),String(now.getMonth()+1).padStart(2,'0'),String(now.getDate()).padStart(2,'0')].join('-');
+  const fullName=document.getElementById('fullName');
   const syncSexOther=()=>{sexOther.disabled=sex.value!=='__other_option__';}; sex.addEventListener('change',syncSexOther); syncSexOther();
   let submitted=false, timeoutId;
   frame.addEventListener('load',function(){if(!submitted)return;clearTimeout(timeoutId);submitted=false;form.style.display='none';success.style.display='block';document.querySelector('.form-logo').style.display='none';document.querySelector('.intro').scrollIntoView({behavior:'smooth',block:'start'});});
-  form.addEventListener('submit',function(){submitted=true;error.style.display='none';button.disabled=true;button.textContent='Submitting…';timeoutId=setTimeout(function(){if(submitted&&success.style.display!=='block'){submitted=false;button.disabled=false;button.textContent='Try Again';error.style.display='block';}},15000);});
+  form.addEventListener('submit',function(){fullName.value=fullName.value.toUpperCase();submitted=true;error.style.display='none';button.disabled=true;button.textContent='Submitting…';timeoutId=setTimeout(function(){if(submitted&&success.style.display!=='block'){submitted=false;button.disabled=false;button.textContent='Try Again';error.style.display='block';}},15000);});
 })();
 </script>
 </body>
