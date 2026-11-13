@@ -1192,7 +1192,16 @@
         .google-reviews-link { display: inline-block; margin-top: 12px; padding: 13px 25px; border-radius: 999px; background: var(--primary, #76513f); color: #fff; text-decoration: none; font-weight: 600; }
         .google-reviews-note { color: #777; font-size: .88rem; margin: 16px auto 0 !important; max-width: 760px; }
         @media (max-width: 900px) { .google-reviews-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-        @media (max-width: 600px) { .google-reviews-list { grid-template-columns: 1fr; } .google-review-item { padding: 18px; } }
+        @media (max-width: 600px) { .google-reviews-list { grid-template-columns: 1fr; } .google-review-item { padding: 18px; } }        /* Appointment link card for the homepage contact section. */
+        #booking-form.booking-cta-card { align-self: stretch; padding: clamp(1.5rem, 3.5vw, 2.5rem); }
+        #booking-form .booking-cta-content { position: relative; z-index: 1; }
+        #booking-form .booking-eyebrow { color: #a45d4b; display: block; font-size: .72rem; font-weight: 700; letter-spacing: .16em; margin-bottom: .6rem; }
+        #booking-form .booking-cta-content h3 { color: var(--primary); font-family: Georgia,serif; font-size: clamp(1.6rem,3.5vw,2rem); margin: 0 0 .65rem; }
+        #booking-form .booking-cta-content p { color: var(--text-light); line-height: 1.65; }
+        #booking-form .booking-open-link { align-items: center; background: #a45d4b; border-radius: 10px; color: #fff; display: flex; font-weight: 700; justify-content: space-between; margin: 1.2rem 0; padding: .9rem 1.1rem; text-decoration: none; }
+        #booking-form .booking-open-link:hover { background: #874535; }
+        #booking-form .booking-call-note { font-size: .84rem; margin-bottom: 0; }
+        #booking-form .booking-call-note a { color: var(--primary); font-weight: 700; text-decoration: none; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1213,7 +1222,7 @@
 <li><a href="/dermatologist-in-gunjur/">Dermatologist in Gunjur</a></li>
 </ul>
 <div class="nav-cta-group">
-<a class="book-appointment-link" href="#booking-form">Book Appointment</a>
+<a class="book-appointment-link" href="appointment.html">Book Appointment</a>
 <a class="registration-link" href="patient-registration.html">Patient Registration</a>
 </div>
 <div class="mobile-menu">☰</div>
@@ -1479,10 +1488,8 @@
 <a href="https://maps.app.goo.gl/uqhnc1CiYdZArfZN8" target="_blank">Open Map Directions →</a>
 </div>
 </div>
-<div class="contact-form" id="booking-form" style="padding: 0; overflow: hidden;">
-<iframe frameborder="0" height="1573" marginheight="0" marginwidth="0" src="https://docs.google.com/forms/d/e/1FAIpQLSdMHHNDVpSyHNO7B7mdy4hbFrjHXt9GUVw0diow4E7hsQc3qw/viewform?embedded=true" style="border-radius: 20px; display: block;" width="100%">
-                    Loading…
-                </iframe>
+<div class="contact-form booking-cta-card" id="booking-form">
+  <div class="booking-cta-content"><span class="booking-eyebrow">LUMI SKIN &amp; HAIR CLINIC</span><h3>Book Your Appointment</h3><p>Choose a treatment and appointment time that works for you. Our team will call to confirm your visit.</p><a class="booking-open-link" href="appointment.html">Open Appointment Form <span aria-hidden="true">→</span></a><p class="booking-call-note">You will get a confirmation call for the appointment date and time else Please contact: <a href="tel:9606694478">9606694478</a> to confirm</p></div>
 </div>
 </div>
 </section>
@@ -1498,7 +1505,7 @@
 <p><a href="#services">Services</a></p>
 <p><a href="#about">About Dr. Shifa</a></p>
 <p><a href="#gallery">Our Clinic</a></p>
-<p><a href="#contact">Book Now</a></p>
+<p><a href="appointment.html">Book Now</a></p>
 </div>
 <div class="footer-section">
 <h4>Contact</h4>
