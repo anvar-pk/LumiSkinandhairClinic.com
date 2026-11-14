@@ -765,13 +765,26 @@
             }
 
             .nav-links a {
-                padding: 15px 0;
-                border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+                padding: 13px 16px;
+                margin: 3px 0;
+                border-radius: 10px;
                 width: 100%;
+                transition: color 0.2s ease, background-color 0.2s ease;
+            }
+
+            .nav-links a:hover,
+            .nav-links a:focus-visible {
+                color: var(--white);
+                background: var(--primary);
+                outline: none;
+            }
+
+            .nav-links a::after {
+                display: none;
             }
 
             .nav-links a:last-child {
-                border-bottom: none;
+                margin-bottom: 0;
             }
 
             .mobile-menu {
